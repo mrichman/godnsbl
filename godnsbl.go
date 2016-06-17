@@ -130,16 +130,17 @@ Reverse the octets of a given IPv4 address
 64.233.171.108 becomes 108.171.233.64
 */
 func Reverse(ip net.IP) string {
-	if ip.To4() != nil {
-		splitAddress := strings.Split(ip.String(), ".")
-
-		for i, j := 0, len(splitAddress)-1; i < len(splitAddress)/2; i, j = i+1, j-1 {
-			splitAddress[i], splitAddress[j] = splitAddress[j], splitAddress[i]
-		}
-
-		return strings.Join(splitAddress, ".")
+	if ip.To4() == nil {
+		return ""
 	}
-	return ""
+
+	splitAddress := strings.Split(ip.String(), ".")
+
+	for i, j := 0, len(splitAddress)-1; i < len(splitAddress)/2; i, j = i+1, j-1 {
+		splitAddress[i], splitAddress[j] = splitAddress[j], splitAddress[i]
+	}
+
+	return strings.Join(splitAddress, ".")
 }
 
 func query(rbl string, host string, r *Result) {
