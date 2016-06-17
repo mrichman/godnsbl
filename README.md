@@ -9,7 +9,7 @@ To test:
 
 ```
 go get github.com/mrichman/godnsbl
-cd $GOPATH/src/github.com/mrichman/godnsbl/cmd
+cd $GOPATH/src/github.com/mrichman/godnsbl/cmd/godnsbl
 go run main.go 127.0.0.2
 ```
 
