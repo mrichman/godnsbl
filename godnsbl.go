@@ -181,9 +181,10 @@ func Lookup(rblList string, targetHost string) (r RBLResults) {
 				query(rblList, addr, &res)
 
 				r.Results = append(r.Results, res)
-
 			}
 		}
+	} else {
+		r.Results = append(r.Results, Result{})
 	}
 	return
 }

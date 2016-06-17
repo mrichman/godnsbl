@@ -21,20 +21,30 @@ func TestReverseIP(t *testing.T) {
 	}
 }
 
+func TestKnownIP(t *testing.T) {
+	fmt.Println("TestKnownIP")
+	t.Parallel()
+
+	for i := range Blacklists {
+		res := Lookup(Blacklists[i], "127.0.0.2")
+		fmt.Println(res.Results)
+	}
+}
+
 func TestLookupParams(t *testing.T) {
 	fmt.Println("TestLookupParams")
 	t.Parallel()
 
 	for i := range Blacklists {
-		res := Lookup(Blacklists[i], "www.example.com")
-		fmt.Println(res.Results)
+		res := Lookup(Blacklists[i], "127.0.0.2")
+		//fmt.Println(res.Results)
 
-		if res.List != "b.barracudacentral.org" {
-			t.Errorf("Expected b.barracudacentral.org, actual %v", res.List)
+		if res.List != Blacklists[i] {
+			t.Errorf("Expected %v, actual %v", Blacklists[i], res.List)
 		}
 
-		if res.Host != "www.markrichman.com" {
-			t.Errorf("Expected www.markrichman.com, actual %v", res.Host)
+		if res.Host != "127.0.0.2" {
+			t.Errorf("Expected 127.0.0.2, actual %v", res.Host)
 		}
 	}
 }

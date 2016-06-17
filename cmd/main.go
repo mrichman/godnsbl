@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+
 	"fmt"
 	"log"
 	"os"
@@ -26,7 +27,11 @@ func main() {
 		go func(i int, source string) {
 			defer wg.Done()
 			rbl := godnsbl.Lookup(source, ip)
-			results[i] = rbl.Results[0]
+			if len(rbl.Results) == 0 {
+				results[i] = godnsbl.Result{}
+			} else {
+				results[i] = rbl.Results[0]
+			}
 		}(i, source)
 	}
 
