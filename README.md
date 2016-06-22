@@ -1,4 +1,4 @@
-# godnsbl [![Travis-CI](https://travis-ci.org/mrichman/godnsbl.svg)](https://travis-ci.org/mrichman/godnsbl) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+# godnsbl [![Travis-CI](https://travis-ci.org/mrichman/godnsbl.svg)](https://travis-ci.org/mrichman/godnsbl) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![Go Report Card](https://goreportcard.com/badge/github.com/mrichman/godnsbl)](https://goreportcard.com/report/github.com/mrichman/godnsbl)
 
 Package godnsbl lets you perform RBL (Real-time Blackhole List - https://en.wikipedia.org/wiki/DNSBL)
 lookups using Golang
