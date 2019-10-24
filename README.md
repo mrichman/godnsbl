@@ -8,7 +8,7 @@ The command-line tool in `cmd` demonstrates the use of [goroutines](https://tour
 To test:
 
 ```
-git clone github.com/mrichman/godnsbl
+git clone https://github.com/mrichman/godnsbl
 cd godnsbl/cmd/godnsbl
 go run main.go 127.0.0.2
 ```
