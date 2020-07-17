@@ -10,6 +10,7 @@ import (
 	"fmt"
 	"net"
 	"strings"
+	"regexp"
 )
 
 /*
@@ -111,6 +112,8 @@ type RBLResults struct {
 Result holds the individual IP lookup results for each RBL search
 */
 type Result struct {
+	//rbl domain
+	Rbl string `json:"rbl"`
 	// Address is the IP address that was searched
 	Address string `json:"address"`
 	// Listed indicates whether or not the IP was on the RBL
@@ -145,12 +148,21 @@ func Reverse(ip net.IP) string {
 
 func query(rbl string, host string, r *Result) {
 	r.Listed = false
+	r.Rbl = rbl
 
 	lookup := fmt.Sprintf("%s.%s", host, rbl)
 
 	res, err := net.LookupHost(lookup)
 	if len(res) > 0 {
-		r.Listed = true
+
+		for _, ip := range res{
+			m, _ := regexp.MatchString("^127.0.0.*", ip) 
+
+			if m == true {
+				r.Listed = true
+			}
+		}
+
 		txt, _ := net.LookupTXT(lookup)
 		if len(txt) > 0 {
 			r.Text = txt[0]
